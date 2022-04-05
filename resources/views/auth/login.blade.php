@@ -53,7 +53,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary"><a href= http://127.0.0.1:8000/beranda>
+                                <button type="submit" class="btn btn-warning">
                                 {{ __('Login') }}
                                 </button></a>
                                 @if (Route::has('password.request'))

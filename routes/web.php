@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BerandaController;
-
+use App\Http\Controllers\DokterController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,3 +22,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/beranda', [BerandaController::class, 'index']);
+Route::resource('dokter', DokterController::class);
