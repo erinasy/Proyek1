@@ -38,50 +38,56 @@
                     {{ session('status') }}
                 </div>
             @endif
-            <form action="/dokter" method="post"  enctype="multipart/form-data"> 
-                    @csrf
+            <form action="/dokter/{{$dokter->nid}}" method="post" enctype="multipart/form-data">
+                {{csrf_field()}}
+                @method('PUT')
+                <input type="hidden" name="nid" value="{{$dokter->nid}}"></br>
                     <div class="form-group">
                         <label for="nid">NID</label>
                         <input type="text" class="form-control" 
-                        required="required" name="nid"></br>
+                        required="required" name="nid" value="{{$dokter->nid}}"></br>
                     </div>
                     <div class="form-group">
                         <label for="name">Nama</label>
                         <input type="text" class="form-control" 
-                        required="required" name="name"></br>
+                        required="required" name="name" value="{{$dokter->name}}"></br>
                     </div>
-                        <div class="form-group">
+                    <div class="form-group">
                         <label for="jenis_kelamin">Jenis Kelamin</label>
                         <input type="text" class="form-control" 
-                        required="required" name="jenis_kelamin"></br>
-                    </div class="form-group">
-                        <div class="form-group">
+                        required="required" name="jenis_kelamin" value="{{$dokter->jenis_kelamin}}"></br>
+                    </div>
+                    <div class="form-group">
                         <label for="alamat_dokter">Alamat Dokter</label>
                         <input type="text" class="form-control" 
-                        required="required" name="alamat_dokter"></br>
+                        required="required" name="alamat_dokter" value="{{$dokter->alamat_dokter}}"></br>
                     </div>
                     <div class="form-group">
                         <label for="nomor_telepon">Nomor Telepon</label>
                         <input type="text" class="form-control" 
-                        required="required" name="nomor_telepon"></br>
+                        required="required" name="nomor_telepon" value="{{$dokter->nomor_telepon}}"></br>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="text" class="form-control" 
-                        required="required" name="email"></br>
+                        required="required" name="email" value="{{$dokter->email}}"></br>
                     </div>
                     <div class="form-group">
                         <label for="spesialis">Spesialis</label>
                         <input type="text" class="form-control" 
-                        required="required" name="spesialis"></br>
+                        required="required" name="spesialis" value="{{$dokter->spesialis}}"></br>
                     </div>
                     <div class="form-group">
-                            <label for="photo">Profile Photo</label>
-                            <input type="file" class="form-control" required="required" 
-                            name="photo"></br>
-                    <div>
-                    <button type="submit" name="add" class="btn btn-primary float-right">Add Data</button>
-                    <a href='/home' class="btn btn-dark">Kembali</a>
+                      <label for="photo">Photo Produk</label>
+                      <div class="input-group">
+                          <div class="custom-file">
+                              <input type="file" class="form-control" required="required" id="photo" name="photo">
+                              <img width="150px" src="{{asset('storage/'.$dokter->photo)}}">
+                          </div>
+                      </div>
+                  </div>
+                    <button type="submit" name="add" class="btn btn-primary float-right">Save Data</button>
+                    <a href='/dokter' class="btn btn-info">Kembali</a>
             </form>
                 </div>
             </div>

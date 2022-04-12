@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\DokterController;
+use App\Http\Controllers\PolaMakanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,5 +21,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/beranda', [BerandaController::class, 'index']);
 Route::resource('dokter', DokterController::class);
+Route::resource('gizi', PolaMakanController::class);

@@ -38,42 +38,32 @@
                     {{ session('status') }}
                 </div>
             @endif
-            <form action="/dokter" method="post"  enctype="multipart/form-data"> 
+            <form action="/gizi" method="post"  enctype="multipart/form-data"> 
                     @csrf
                     <div class="form-group">
-                        <label for="nid">NID</label>
+                        <label for="id_polaMakan">ID</label>
                         <input type="text" class="form-control" 
-                        required="required" name="nid"></br>
+                        required="required" name="id_polaMakan"></br>
                     </div>
                     <div class="form-group">
-                        <label for="name">Nama</label>
+                        <label for="nama_makanan">Nama Makanan</label>
                         <input type="text" class="form-control" 
-                        required="required" name="name"></br>
+                        required="required" name="nama_makanan"></br>
                     </div>
                         <div class="form-group">
-                        <label for="jenis_kelamin">Jenis Kelamin</label>
+                        <label for="jumlah_kalori">Jumlah Kalori</label>
                         <input type="text" class="form-control" 
-                        required="required" name="jenis_kelamin"></br>
+                        required="required" name="jumlah_kalori"></br>
                     </div class="form-group">
                         <div class="form-group">
-                        <label for="alamat_dokter">Alamat Dokter</label>
+                        <label for="harga">Harga</label>
                         <input type="text" class="form-control" 
-                        required="required" name="alamat_dokter"></br>
+                        required="required" name="harga"></br>
                     </div>
                     <div class="form-group">
-                        <label for="nomor_telepon">Nomor Telepon</label>
+                        <label for="keterangan">Keterangan</label>
                         <input type="text" class="form-control" 
-                        required="required" name="nomor_telepon"></br>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="text" class="form-control" 
-                        required="required" name="email"></br>
-                    </div>
-                    <div class="form-group">
-                        <label for="spesialis">Spesialis</label>
-                        <input type="text" class="form-control" 
-                        required="required" name="spesialis"></br>
+                        required="required" name="keterangan"></br>
                     </div>
                     <div class="form-group">
                             <label for="photo">Profile Photo</label>

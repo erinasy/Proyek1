@@ -5,13 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pelanggan extends Model
+class Dokter extends Model
 {
     //use HasFactory;
+    public $table = "dokters";
     protected $fillable = ['nid', 'name', 'jenis_kelamin','alamat_dokter','nomor_telepon','email','spesialis'];
-
-    public function produks()
-    {
-        return $this->hasMany(Produk::class);
-    }
+    protected $primaryKey = 'nid';
 }

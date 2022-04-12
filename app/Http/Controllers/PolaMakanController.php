@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Dokter;
+use App\Models\PolaMakan;
 
-class DokterController extends Controller
+class PolaMakanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,8 @@ class DokterController extends Controller
      */
     public function index()
     {
-        $dokters = Dokter::all();
-        return view('dokter.index',['dokter'=>$dokters]);
-
+        $pola_makan = PolaMakan::all();
+        return view('gizi.index',['polaMakan'=>$pola_makan]);
     }
 
     /**
@@ -26,7 +25,7 @@ class DokterController extends Controller
      */
     public function create()
     {
-        return view('dokter.create');
+        return view('gizi.create');
     }
 
     /**
@@ -37,25 +36,22 @@ class DokterController extends Controller
      */
     public function store(Request $request)
     {
-        $dokter = new Dokter;
+        $pola_makan = new PolaMakan;
 
         if($request->file('photo')){
             $image_name = $request->file('photo')->store('images','public');
         }
+        $pola_makan->id_polaMakan = $request->id_polaMakan;
+        $pola_makan->nama_makanan = $request->nama_makanan;
+        $pola_makan->jumlah_kalori = $request->jumlah_kalori;
+        $pola_makan->harga = $request->harga;
+        $pola_makan->keterangan = $request->keterangan;
+        $pola_makan->photo = $image_name;
 
-        $dokter->nid = $request->nid;
-        $dokter->name = $request->name;
-        $dokter->jenis_kelamin= $request->jenis_kelamin;
-        $dokter->alamat_dokter = $request->alamat_dokter;
-        $dokter->nomor_telepon = $request->nomor_telepon;
-        $dokter->email = $request->email;
-        $dokter->spesialis = $request->spesialis;
-        $dokter->photo = $image_name;
-
-        $dokter->save();
+        $pola_makan->save();
          
          // if true, redirect to index
-        return redirect()->route('dokter.index')->with('success', 'Add data success!');
+        return redirect()->route('gizi.index')->with('success', 'Add data success!');
         //add data
     }
 
@@ -65,7 +61,7 @@ class DokterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($nid)
+    public function show($id)
     {
         //
     }
@@ -76,10 +72,11 @@ class DokterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($nid)
+    public function edit($id_polaMakan)
     {
-        $dokters = Dokter::find($nid);
-        return view('dokter.edit',['dokter'=>$dokters]);
+        $pola_makan= PolaMakan::find($id_polaMakan);
+        return view('gizi.edit',['polaMakan'=>$pola_makan]);
+
     }
 
     /**
@@ -89,27 +86,24 @@ class DokterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $nid)
+    public function update(Request $request, $id_polaMakan)
     {
-            $dokters = Dokter::find($nid);
-            $dokters->nid = $request->nid;
-            $dokters->name = $request->name;
-            $dokters->jenis_kelamin = $request->jenis_kelamin;
-            $dokters->alamat_dokter = $request->alamat_dokter;
-            $dokters->nomor_telepon = $request->nomor_telepon;
-            $dokters->email = $request->email;
-            $dokters->spesialis = $request->spesialis;
+        $pola_makan = PolaMakan::find($id_polaMakan);
+        $pola_makan->id_polaMakan = $request->id_polaMakan;
+        $pola_makan->nama_makanan = $request->nama_makanan;
+        $pola_makan->jumlah_kalori = $request->jumlah_kalori;
+        $pola_makan->harga = $request->harga;
+        $pola_makan->keterangan = $request->keterangan;
             if($request->file('photo')){
                 $image_name = $request->file('photo')->store('images','public');
-                if($dokters->photo && file_exists(storage_path('app/public/' . $dokters->photo))){
-                    \Storage::delete('public/'.$dokter->photo);
+                if($pola_makan->photo && file_exists(storage_path('app/public/' . $pola_makan->photo))){
+                    \Storage::delete('public/'.$pola_makan->photo);
                 }
                     $image_name = $request->file('photo')->store('images', 'public');
-                    $dokters->photo = $image_name;
+                    $pola_makan->photo = $image_name;
             }
-            $dokters->save();
-            return redirect()->route('dokter.index');
-
+            $pola_makan->save();
+            return redirect()->route('gizi.index');
     }
 
     /**

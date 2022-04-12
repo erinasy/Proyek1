@@ -1,6 +1,6 @@
 @extends('layouts.app1')
 @section('header')
-        <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+<nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
                 <a class="navbar-brand" href="#page-top">Start  HEALTHY EATING</a>
                 <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,68 +28,58 @@
         </nav>
 @endsection
 @section('content')
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-            <br></br>
-                    <div class="card-body">
-            @if (session('status'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
+<div class="container">
+                <br>
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">DATA POLA MAKAN</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
                 </div>
-            @endif
-            <form action="/dokter" method="post"  enctype="multipart/form-data"> 
-                    @csrf
-                    <div class="form-group">
-                        <label for="nid">NID</label>
-                        <input type="text" class="form-control" 
-                        required="required" name="nid"></br>
-                    </div>
-                    <div class="form-group">
-                        <label for="name">Nama</label>
-                        <input type="text" class="form-control" 
-                        required="required" name="name"></br>
-                    </div>
-                        <div class="form-group">
-                        <label for="jenis_kelamin">Jenis Kelamin</label>
-                        <input type="text" class="form-control" 
-                        required="required" name="jenis_kelamin"></br>
-                    </div class="form-group">
-                        <div class="form-group">
-                        <label for="alamat_dokter">Alamat Dokter</label>
-                        <input type="text" class="form-control" 
-                        required="required" name="alamat_dokter"></br>
-                    </div>
-                    <div class="form-group">
-                        <label for="nomor_telepon">Nomor Telepon</label>
-                        <input type="text" class="form-control" 
-                        required="required" name="nomor_telepon"></br>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="text" class="form-control" 
-                        required="required" name="email"></br>
-                    </div>
-                    <div class="form-group">
-                        <label for="spesialis">Spesialis</label>
-                        <input type="text" class="form-control" 
-                        required="required" name="spesialis"></br>
-                    </div>
-                    <div class="form-group">
-                            <label for="photo">Profile Photo</label>
-                            <input type="file" class="form-control" required="required" 
-                            name="photo"></br>
-                    <div>
-                    <button type="submit" name="add" class="btn btn-primary float-right">Add Data</button>
-                    <a href='/home' class="btn btn-dark">Kembali</a>
-            </form>
-                </div>
-            </div>
-         </div>
-    </div>
+                <a href="/gizi/create" class="btn btn-warning">Add Data</a>
+                <a href='/home' class="btn btn-dark">Kembali</a>
+                    <br><br>
+                    <table class="table table-responsive table-striped">
+                        <thead>
+                            <tr>
+                                 <th>ID</th>
+                                 <th>Nama Makanan</th>
+                                 <th>Jumlah Kalori</th>
+                                 <th>Harga</th>
+                                 <th>Ketarangan</th>
+                                 <th>Photo</th>
+                                 <th>Action</th>
+                            </tr>
+                        </thead>
+                    <tbody>
+                    @foreach($polaMakan as $a)
+                     <tr>
+                         <td>{{ $a->id_polaMakan }}</td>
+                         <td>{{ $a->nama_makanan }}</td>
+                         <td>{{ $a->jumlah_kalori }}</td>
+                         <td>{{ $a->harga }}</td>
+                         <td>{{ $a->keterangan }}</td>
+                         <td>
+                           <img width="150px" src="{{asset('storage/'.$a->photo)}}" alt="image">
+                          </td>
+                         <td>
+                            <form action="/gizi/{{$a->id_polaMakan}}" method="post">
+                             <a href="/gizi/{{$a->id_polaMakan}}/edit" class="btn btn-warning">Edit</a>
+                             <a href="/gizi/{{$a->id_polaMakan}}" class="btn btn-info">View</a>
+                                 @csrf
+                                 @method('DELETE')
+                                <button type="submit" name="delete" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                     </tbody>
+                </table>
 </div>
 @endsection
 @section('footer')
+        <!-- Footer-->
         <footer class="footer text-center">
             <div class="container">
                 <div class="row">

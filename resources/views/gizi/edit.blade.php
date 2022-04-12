@@ -38,50 +38,46 @@
                     {{ session('status') }}
                 </div>
             @endif
-            <form action="/dokter" method="post"  enctype="multipart/form-data"> 
-                    @csrf
+            <form action="/gizi/{{$polaMakan->id_polaMakan}}" method="post" enctype="multipart/form-data">
+                {{csrf_field()}}
+                @method('PUT')
+                <input type="hidden" name="id_polaMakan" value="{{$polaMakan->id_polaMakan}}"></br>
                     <div class="form-group">
-                        <label for="nid">NID</label>
+                        <label for="id_polaMakan">ID</label>
                         <input type="text" class="form-control" 
-                        required="required" name="nid"></br>
+                        required="required" name="id_polaMakan" value="{{$polaMakan->id_polaMakan}}"></br>
                     </div>
                     <div class="form-group">
-                        <label for="name">Nama</label>
+                        <label for="nama_makanan">Nama Makanan</label>
                         <input type="text" class="form-control" 
-                        required="required" name="name"></br>
-                    </div>
-                        <div class="form-group">
-                        <label for="jenis_kelamin">Jenis Kelamin</label>
-                        <input type="text" class="form-control" 
-                        required="required" name="jenis_kelamin"></br>
-                    </div class="form-group">
-                        <div class="form-group">
-                        <label for="alamat_dokter">Alamat Dokter</label>
-                        <input type="text" class="form-control" 
-                        required="required" name="alamat_dokter"></br>
+                        required="required" name="name" value="{{$polaMakan->nama_makanan}}"></br>
                     </div>
                     <div class="form-group">
-                        <label for="nomor_telepon">Nomor Telepon</label>
+                        <label for="jumlah_kalori">Jumlah Kalori</label>
                         <input type="text" class="form-control" 
-                        required="required" name="nomor_telepon"></br>
+                        required="required" name="jumlah_kalori" value="{{$polaMakan->jumlah_kalori}}"></br>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="harga">Harga</label>
                         <input type="text" class="form-control" 
-                        required="required" name="email"></br>
+                        required="required" name="harga" value="{{$polaMakan->harga}}"></br>
                     </div>
                     <div class="form-group">
-                        <label for="spesialis">Spesialis</label>
+                        <label for="keterangan">Keterangan</label>
                         <input type="text" class="form-control" 
-                        required="required" name="spesialis"></br>
+                        required="required" name="keterangan" value="{{$polaMakan->keterangan}}"></br>
                     </div>
                     <div class="form-group">
-                            <label for="photo">Profile Photo</label>
-                            <input type="file" class="form-control" required="required" 
-                            name="photo"></br>
-                    <div>
-                    <button type="submit" name="add" class="btn btn-primary float-right">Add Data</button>
-                    <a href='/home' class="btn btn-dark">Kembali</a>
+                      <label for="photo">Photo Produk</label>
+                      <div class="input-group">
+                          <div class="custom-file">
+                              <input type="file" class="form-control" required="required" id="photo" name="photo">
+                              <img width="150px" src="{{asset('storage/'.$polaMakan->photo)}}">
+                          </div>
+                      </div>
+                  </div>
+                    <button type="submit" name="add" class="btn btn-primary float-right">Save Data</button>
+                    <a href='/dokter' class="btn btn-info">Kembali</a>
             </form>
                 </div>
             </div>
