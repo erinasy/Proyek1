@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\PolaMakanController;
+use App\Http\Controllers\KaloriController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,3 +24,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('dokter', DokterController::class);
 Route::resource('gizi', PolaMakanController::class);
+Route::resource('kalori', KaloriController::class);

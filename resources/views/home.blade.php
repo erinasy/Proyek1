@@ -122,28 +122,52 @@
                     {{ session('status') }}
                 </div>
             @endif
-            <form action="/kalkulator" method="post" enctype="multipart/form-data"> 
+            <form action="/kalori" method="post" enctype="multipart/form-data"> 
                     @csrf
                     <div class="form-group">
-                        <input type="number" class="form-control" placeholder="Berat Badan"
-                        required="required" name="beratBadan"></br>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Nama" required="required" name="name">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="number" class="form-control" placeholder="Tinggi Badan"
-                        required="required" name="tinggiBadan"></br>
-                    </div>
-                        <div class="form-group">
-                        <input type="number" class="form-control" placeholder="Umur"
-                        required="required" name="umur"></br>
-                    </div>
-                    <div class="col-md-3">
-                        <select name="jenis_kelamin" class="form-control">
-                            <option value="p"> Perempuan </option>
-                            <option value="l"> Laki-Laki </option>
-                        </select>
-                    </div>  
                     <br>
-                    <button type="submit" name="add" class="btn btn-secondary">Hitung</button>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="number" class="form-control" placeholder="Berat Badan"
+                            required="required" name="berat_badan">
+                            <div class="input-group-append">
+                                <span class="input-group-text">kg</span>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="number" class="form-control" placeholder="Tinggi Badan"
+                            required="required" name="tinggi_badan">
+                            <div class="input-group-append">
+                                    <span class="input-group-text">cm</span>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="number" class="form-control" placeholder="Umur"
+                            required="required" name="umur">
+                            <div class="input-group-append">
+                                 <span class="input-group-text">tahun</span>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Jenis Kelamin"
+                            required="required" name="jenis_kelamin">
+                        </div>
+                    </div>
+                    <br>
+                    <button type="submit" name="hitung" class="btn btn-secondary">Hitung</button>
             </form>
                 </div>
             </div>

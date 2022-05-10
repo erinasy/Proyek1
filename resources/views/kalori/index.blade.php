@@ -31,43 +31,41 @@
 @section('content')
 <div class="container">
                 <br>
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">DATA POLA MAKAN</h2>
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">DATA PERHITUNGAN GIZI</h2>
                 <!-- Icon Divider-->
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
                     <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                     <div class="divider-custom-line"></div>
                 </div>
-                <a href="/gizi/create" class="btn btn-warning">Add Data</a>
                 <a href='/home' class="btn btn-dark">Kembali</a>
                     <br><br>
                     <table class="table table-responsive table-striped">
                         <thead>
                             <tr>
                                  <th>ID</th>
-                                 <th>Nama Makanan</th>
-                                 <th>Jumlah Kalori</th>
-                                 <th>Harga</th>
-                                 <th>Ketarangan</th>
-                                 <th>Photo</th>
-                                 <th>Action</th>
+                                 <th>Nama</th>
+                                 <th>Berat Badan</th>
+                                 <th>Tinggi Badan</th>
+                                 <th>Umur</th>
+                                 <th>Jenis Kelamin</th>
+                                 <th>Keterangan</th>
                             </tr>
                         </thead>
                     <tbody>
-                    @foreach($polaMakan as $a)
+                    @foreach($kalori as $s)
                      <tr>
-                         <td>{{ $a->id_polaMakan }}</td>
-                         <td>{{ $a->nama_makanan }}</td>
-                         <td>{{ $a->jumlah_kalori }}</td>
-                         <td>{{ $a->harga }}</td>
-                         <td>{{ $a->keterangan }}</td>
+                         <td>{{ $s->id_kalori }}</td>
+                         <td>{{ $s->name }}</td>
+                         <td>{{ $s->berat_badan }}</td>
+                         <td>{{ $s->tinggi_badan }}</td>
+                         <td>{{ $s->umur }}</td>
+                         <td>{{ $s->jenis_kelamin}}</td>
+                         <td>{{ $s->keterangan}}</td>
                          <td>
-                           <img width="150px" src="{{asset('storage/'.$a->photo)}}" alt="image">
-                          </td>
-                         <td>
-                            <form action="/gizi/{{$a->id_polaMakan}}" method="post">
-                             <a href="/gizi/{{$a->id_polaMakan}}/edit" class="btn btn-warning">Edit</a>
-                             <a href="/gizi/{{$a->id_polaMakan}}" class="btn btn-info">View</a>
+                            <form action="/kalori/{{$s->nid}}" method="post">
+                             <a href="/kalori/{{$s->nid}}/edit" class="btn btn-warning">Edit</a>
+                             <a href="/kalori/{{$s->nid}}" class="btn btn-info">View</a>
                                  @csrf
                                  @method('DELETE')
                                 <button type="submit" name="delete" class="btn btn-danger">Delete</button>
